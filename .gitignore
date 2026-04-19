@@ -1,0 +1,16 @@
+# Secrets
+.env
+*.key
+credentials/
+secrets.txt
+
+# n8n local data
+n8n_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,1640 @@
+{
+  "name": "Sales Lead Qualifier",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bb25e52a-0978-4cc2-ac25-0481cc3c0d1e",
+      "name": "Telegram Trigger",
+      "webhookId": "b5c87447-becd-4bc5-92a1-f7ccf0538da6",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1B2_NFRSRoZYwfn6mU9i2FL_-KborBkg6JWdDmhJYpaw/edit",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1644959373,
+          "mode": "list",
+          "cachedResultName": "Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1B2_NFRSRoZYwfn6mU9i2FL_-KborBkg6JWdDmhJYpaw/edit#gid=1644959373"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.name }}",
+            "chat_id": "={{ $json.chat_id }}",
+            "Company": "={{ $json.company }}",
+            "Message": "={{ $json.original_text }}",
+            "Enrichment_source": "={{ $json.enrichment_source }}",
+            "teleg_username": "=@{{ $json.sender_username }}",
+            "Generated Response": "={{ $json.generated_response }}",
+            "Timestamp": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}",
+            "Тип звонка(Category)": "={{ $json.category }}",
+            "Срочность(Urgency)": "={{ $json.urgency }}",
+            "Намерение(Intend)": "={{ $json.intent }}",
+            "доп. Дата(Enrichment)": "={{ $json.enrichment }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Тип звонка(Category)",
+              "displayName": "Тип звонка(Category)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Срочность(Urgency)",
+              "displayName": "Срочность(Urgency)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Намерение(Intend)",
+              "displayName": "Намерение(Intend)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Message",
+              "displayName": "Message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "доп. Дата(Enrichment)",
+              "displayName": "доп. Дата(Enrichment)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Enrichment_source",
+              "displayName": "Enrichment_source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "teleg_username",
+              "displayName": "teleg_username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Generated Response",
+              "displayName": "Generated Response",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2720,
+        96
+      ],
+      "id": "69e9ddcc-8b2b-4840-a0f0-25317718fc8b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PtXBbDGo7LctzXeH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=1619231316",
+        "text": "=🔔 Новый лид (автоответ отправлен ✅)\n\n👤 Клиент: {{ $('Auto Respond?').item.json.Name }}\n🏢 Компания: {{ $('Auto Respond?').item.json['доп. Дата(Enrichment)']}}\n📊 Тип звонка: {{ $('Auto Respond?').item.json['Тип звонка(Category)'] }}\n🔥Срочность: {{ $json['Срочность(Urgency)'] }}\n🎯Намерение: {{ $json[\"Намерение(Intend)\"] }}\n\n💬 Клиент:{{ $('Auto Respond?').item.json['Message'] }}\n\n✉️ Отправлено: {{ $('Auto Respond?').item.json['Generated Response'] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3408,
+        96
+      ],
+      "id": "90636008-e2c8-4927-b20f-8817ec1d21a7",
+      "name": "Message to Managers",
+      "webhookId": "27b987ab-db19-4598-9178-31f6d625755c",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.1-flash-lite-preview",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.1-flash-lite-preview"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert sales lead qualifier for Big Dream Lab, an educational company in Astana, Kazakhstan specializing in: Unity 3D game development, Unreal Engine 5, UI/UX design, 3D modeling and animation, Product Management, and AR/VR development. They also offer corporate training programs and partner with Tech Orda government grant program.\n\nWrite a personalized response to this potential client. RESPOND IN THE SAME LANGUAGE AS THE CLIENT'S MESSAGE.\n\nCLIENT'S MESSAGE: {{ $('Telegram Trigger').first().json.message.text }}\n\nLEAD ANALYSIS: {{ $json.candidates[0].content.parts[0].text }}\n\nRULES:\n- NEVER suggest specific dates or times like \"в четверг в 11:00\" or \"завтра в 15:00\". Instead ask \"Когда вам удобно созвониться?\" or \"Подскажите удобное время для короткого звонка?\"\n- If category is \"hot\": be enthusiastin and mention specific solutions\n- If category is \"warm\": be helpful, answer their likely questions, gently push toward a call\n- If category is \"cold\": be friendly, provide general info, invite to a free webinar\n- Keep it under 100 words\n- Address client by name\n- If company is mentioned, reference it naturally\n- End with a clear call-to-action\n- RESPOND IN THE SAME LANGUAGE AS THE CLIENT'S MESSAGE\n\nRETURN ONLY the message text. No JSON, no formatting, no quotes."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        2192,
+        96
+      ],
+      "id": "e29c53a1-fd63-431b-b960-5dc3430d8963",
+      "name": "respond for user",
+      "retryOnFail": false,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TKyAytCaLHF9tPHJ",
+          "name": "Sales Bot - Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.1-flash-lite-preview",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.1-flash-lite-preview"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert sales lead qualifier for Big Dream Lab, an educational company in Astana, Kazakhstan specializing in: Unity 3D game development, Unreal Engine 5, UI/UX design, 3D modeling and animation, Product Management, and AR/VR development. They also offer corporate training programs and partner with Tech Orda government grant program.\n\nYour task: Analyze the incoming message from a potential client and return a structured JSON.\n\nINCOMING MESSAGE:\n\"{{ $json.message_text }}\"\n\nSENDER INFO:\n- Name: {{ $json.first_name }}\n- Username:{{ $json.username }}\n\nCLASSIFY the lead into ONE of these categories:\n- \"hot\" — clear buying intent, specific product interest, ready to discuss terms, mentions company/budget/timeline\n- \"warm\" — genuine interest but still exploring, asks general questions, comparing options\n- \"cold\" — vague curiosity, just browsing, students with no clear goal, off-topic\n\nEXTRACT the following fields:\n- name: person's name (from message or sender info)\n- company: company name if mentioned, otherwise null. IMPORTANT: normalize the company name to its official name (e.g., \"каспи\" → \"Kaspi Bank\", \"халык\" → \"Halyk Bank\", \"казпочта\" → \"Kazpost\")\n- category: \"hot\" | \"warm\" | \"cold\"\n- intent: one short sentence describing what they want (in Russian)\n- urgency: \"high\" | \"medium\" | \"low\"\n- reasoning: 1-2 sentences explaining your classification (in English)\n\nRETURN ONLY valid JSON in this exact format, no markdown, no extra text:\n{\n  \"name\": \"...\",\n  \"company\": \"...\" or null,\n  \"category\": \"hot\" | \"warm\" | \"cold\",\n  \"intent\": \"...\",\n  \"urgency\": \"high\" | \"medium\" | \"low\",\n  \"reasoning\": \"...\"\n}"
+            }
+          ]
+        },
+        "simplify": false,
+        "jsonOutput": true,
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1856,
+        96
+      ],
+      "id": "7bf432ff-17cf-4f5f-a395-95ae312b2892",
+      "name": "field extracter",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TKyAytCaLHF9tPHJ",
+          "name": "Sales Bot - Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.response_text }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        656,
+        -304
+      ],
+      "id": "faee0abd-5c7c-4ea0-b170-e671b89fe7a3",
+      "name": "Send a text message",
+      "webhookId": "79dc5635-2a50-4b5e-9ee0-84132a2b22d1",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.auto_respond) staticData.auto_respond = 'on';\nif (!staticData.notify_filter) staticData.notify_filter = 'all';\n\nconst previousData = $input.all()[0].json;\nconst category = (previousData['Тип звонка(Category)'] || previousData.category || '').toLowerCase();\nconst filter = staticData.notify_filter;\n\nlet shouldNotify = true;\nif (filter === 'all') {\n  shouldNotify = true;\n} else if (filter.includes(',')) {\n  shouldNotify = filter.split(',').includes(category);\n} else {\n  shouldNotify = filter === category;\n}\n\nreturn [{\n  json: {\n    ...previousData,\n    auto_respond: staticData.auto_respond,\n    should_notify: shouldNotify\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        288
+      ],
+      "id": "83cf65fe-e112-49ff-bd26-40c359bdaa1d",
+      "name": "Check Auto Respond"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst text = $json.message.text.trim();\nconst chatId = $json.message.chat.id;\n\nif (!staticData.auto_respond) staticData.auto_respond = 'on';\nif (!staticData.notify_filter) staticData.notify_filter = 'all';\n\nlet responseText = '';\n\nif (text === '/on') {\n  staticData.auto_respond = 'on';\n  responseText = '⚙️ Автоответ: ВКЛЮЧЁН ✅\\n\\nКлиенты будут получать ответ автоматически.';\n\n} else if (text === '/off') {\n  staticData.auto_respond = 'off';\n  responseText = '⚙️ Автоответ: ВЫКЛЮЧЕН 🔴\\n\\nВы будете получать уведомления с кнопками для одобрения.';\n\n} else if (text === '/status') {\n  const mode = staticData.auto_respond === 'on' ? '✅ ВКЛЮЧЁН' : '🔴 ВЫКЛЮЧЕН';\n  const filter = staticData.notify_filter;\n  responseText = '⚙️ Текущие настройки:\\n\\n📨 Автоответ: ' + mode + '\\n🔔 Фильтр: ' + filter;\n\n} else if (text.startsWith('/filter_')) {\n  const filter = text.replace('/filter_', '').toLowerCase().trim();\n  if (['hot', 'warm', 'cold', 'hot_warm', 'all'].includes(filter)) {\n    const saveFilter = filter.replace('_', ',');\n    staticData.notify_filter = saveFilter;\n    responseText = '🔔 Фильтр уведомлений: ' + saveFilter;\n  } else {\n    responseText = '❓ Неверный фильтр.\\n/filter_hot\\n/filter_hot_warm\\n/filter_all';\n  }\n\n} else {\n  responseText = '❓ Неизвестная команда.\\n\\n/on — включить автоответ\\n/off — выключить автоответ\\n/status — настройки\\n/analytics — аналитика\\n/filter_hot — только горячие\\n/filter_hot_warm — горячие и тёплые\\n/filter_all — все';\n}\n\nreturn [{\n  json: {\n    chat_id: chatId,\n    response_text: responseText\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        -304
+      ],
+      "id": "9818f50e-f5d6-43bb-915a-249544c5f704",
+      "name": "Command Handler",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3475a150-b120-485b-8edd-9b5613cf073a",
+              "leftValue": "={{ $json.auto_respond }}",
+              "rightValue": "on",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2912,
+        288
+      ],
+      "id": "bc19aff9-e012-4411-b544-68ccb554c7e3",
+      "name": "Auto Respond?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6ab53650-7240-47fb-af6b-bd81730f20f8",
+              "leftValue": "={{ $json[\"Тип звонка(Category)\"] }}",
+              "rightValue": "warm",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "ef42119b-dbf9-432e-ae0e-3f30a33d9743",
+              "leftValue": "={{ $json[\"Тип звонка(Category)\"] }}",
+              "rightValue": "hot",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2912,
+        96
+      ],
+      "id": "d01db5ac-0c51-4953-8472-6646ba47a59f",
+      "name": "check for category"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json['Generated Response'] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3408,
+        240
+      ],
+      "id": "a02664ae-c288-4a54-bb28-f45fd185e2f6",
+      "name": "Auto Send to Client",
+      "webhookId": "b84b9cb2-4c34-4cb5-8d37-eb87de4baed1",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=1619231316",
+        "text": "=🔔 Новый лид (ожидает решения ⏳)\n\n👤 Клиент: {{ $json.Name }}\n🏢 Компания: {{ $json['доп. Дата(Enrichment)'] }}\n📊 Тип звонка: {{ $json['Тип звонка(Category)'] }}\n🔥 Срочность: {{ $json[\"Срочность(Urgency)\"] }}\n🎯 Намерение: {{ $json[\"Намерение(Intend)\"] }}\n\n💬 Клиент: {{ $json['Message'] }}\n\n📝 {{ $('data enricher').item.json.reasoning }}\n\n---GENERATED_RESPONSE---\n{{ $json['Generated Response'] }}\n---END_RESPONSE---",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "✅ Одобрить",
+                    "additionalFields": {
+                      "callback_data": "=approve_{{ $json.chat_id }}"
+                    }
+                  },
+                  {
+                    "text": "❌ Отклонить",
+                    "additionalFields": {
+                      "callback_data": "=reject_{{ $json.chat_id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3408,
+        384
+      ],
+      "id": "db9d1714-e681-4e39-adc6-fd6ae01bddf0",
+      "name": "Notify Manager Manual",
+      "webhookId": "0828ea00-093a-49ae-9fb4-5ee324251645",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "approve",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "ebad1c43-e9b4-44c9-a4ee-5f1f2f509444"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "approve"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c2220389-1daf-4902-8e3e-2ecbf059ac93",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reject"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        672,
+        512
+      ],
+      "id": "e3c07f28-fb0f-48ef-9d36-76bb9360bb2e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.client_chat_id }}",
+        "text": "={{ $json.generated_response }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        496
+      ],
+      "id": "2bc5d19d-f65f-4729-8716-3583f34c4be6",
+      "name": "Send to Client",
+      "webhookId": "24dcddd8-26bb-496a-b3ad-2a251891c215",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Switch').item.json.manager_chat_id }}",
+        "text": "✅ Ответ отправлен клиенту!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1584,
+        496
+      ],
+      "id": "82cef387-99f5-4e9c-8b49-3031ed8c1332",
+      "name": "Confirm Approve",
+      "webhookId": "57dc23bb-f6b4-4893-8acb-d630b7aa6dd0",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.callback_query ? 2 : ($json.message && $json.message.text === '/analytics' ? 3 : ($json.message && $json.message.text && $json.message.text.startsWith('/') ? 0 : 1)) }}",
+        "looseTypeValidation": true
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        -16
+      ],
+      "id": "ed835abd-b314-48d5-ad7a-4f0357565f3a",
+      "name": "Router"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.manager_chat_id }}",
+        "text": "❌ Лид отклонён.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        688
+      ],
+      "id": "8093e4a1-075d-47e2-be84-9eefed079768",
+      "name": "Confirm Reject",
+      "webhookId": "9120316c-f5f5-444f-a9ce-4cc1cd82ed47",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const geminiResponse = $input.first().json.content.parts[0].text.trim().toLowerCase();\nconst telegramData = $('Telegram Trigger').first().json;\n\nconst intent = geminiResponse.includes('lead') ? 'lead' : 'question';\n\nreturn [{\n  json: {\n    intent: intent,\n    message_text: telegramData.message.text,\n    chat_id: telegramData.message.chat.id,\n    first_name: telegramData.message.from.first_name,\n    username: telegramData.message.from.username\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1312,
+        192
+      ],
+      "id": "08cf55ff-4ff5-4322-9d67-ce41947cd12d",
+      "name": "Parse Intent"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Classify the following message into exactly ONE category.\n\nMESSAGE: \"{{ $json.message.text }}\"\n\nCategories:\n- \"lead\" — the person wants to BUY something, hire for training, get corporate education, become a student, enroll in a course. They express INTENT to purchase or interest in becoming a client.\n- \"question\" — the person asks a QUESTION about courses, pricing, schedule, requirements, grants, company info. They want INFORMATION, not ready to buy yet.\n\nExamples:\n- \"Хочу курс Python для компании Kaspi, 30 человек\" → lead\n- \"Сколько стоит курс Unity?\" → question\n- \"Когда начинается следующий набор?\" → question\n- \"Я HR из Halyk Bank, нужно обучить сотрудников\" → lead\n- \"Какие курсы есть?\" → question\n- \"Хочу записаться на курс UI/UX\" → lead\n- \"Нужен ли ноутбук?\" → question\n- \"Как получить грант Тех Орда?\" → question\n\nRETURN ONLY ONE WORD: lead or question"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        192
+      ],
+      "id": "1e1d6126-177c-4641-997e-5c525df3b5d1",
+      "name": "Intent Classifier",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TKyAytCaLHF9tPHJ",
+          "name": "Sales Bot - Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://rag:5000/ask",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.message_text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1872,
+        288
+      ],
+      "id": "186193f2-162e-4c58-9f89-7642b9af8110",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Intent').first().json.chat_id }}",
+        "text": "={{ $json.answer }}  ",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2080,
+        288
+      ],
+      "id": "c85170ed-08d7-4c05-b915-9083db425a53",
+      "name": "answer to question",
+      "webhookId": "b9ff5499-231c-407f-b817-159cb8c96a52",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1B2_NFRSRoZYwfn6mU9i2FL_-KborBkg6JWdDmhJYpaw/edit",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1644959373,
+          "mode": "list",
+          "cachedResultName": "Data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1B2_NFRSRoZYwfn6mU9i2FL_-KborBkg6JWdDmhJYpaw/edit#gid=1644959373"
+        },
+        "filtersUI": {
+          "values": []
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        464,
+        880
+      ],
+      "id": "58fde7eb-0e28-4aa7-a20f-ab023dbdc59b",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PtXBbDGo7LctzXeH",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all().map(item => item.json);\nconst telegramData = $('Telegram Trigger').first().json;\n\nconst now = new Date();\nconst todayStr = now.toISOString().split('T')[0];\nconst yesterday = new Date(now);\nyesterday.setDate(yesterday.getDate() - 1);\nconst yesterdayStr = yesterday.toISOString().split('T')[0];\n\nconst recentRows = rows.filter(row => {\n  const ts = row.Timestamp || '';\n  return ts.startsWith(todayStr) || ts.startsWith(yesterdayStr);\n});\n\n// Course detection by keywords\nconst courseKeywords = {\n  'Unity 3D': ['unity', 'юнити', 'game dev', 'gamedev', 'разработка игр'],\n  'Unreal Engine': ['unreal', 'анрил', 'ue5', 'ue4'],\n  'UI/UX дизайн': ['ui/ux', 'ui ux', 'uiux', 'дизайн', 'figma', 'ux design'],\n  '3D моделирование': ['3d', 'blender', 'maya', 'моделирование', 'анимация'],\n  'Product Management': ['product management', 'продакт', 'менеджмент продукта'],\n  'AR/VR': ['ar/vr', 'ar vr', 'arvr', 'дополненная реальность', 'виртуальная реальность'],\n  'Data Science / ML': ['data science', 'ds', 'machine learning', 'ml', 'python', 'питон']\n};\n\nfunction detectCourse(message) {\n  const lower = (message || '').toLowerCase();\n  for (const [course, keywords] of Object.entries(courseKeywords)) {\n    for (const kw of keywords) {\n      if (lower.includes(kw)) return course;\n    }\n  }\n  return 'Другое';\n}\n\nlet totalHot = 0, totalWarm = 0, totalCold = 0;\nfor (const row of rows) {\n  const cat = (row['Тип звонка(Category)'] || '').toLowerCase();\n  if (cat === 'hot') totalHot++;\n  else if (cat === 'warm') totalWarm++;\n  else if (cat === 'cold') totalCold++;\n}\n\nlet recentHot = 0, recentWarm = 0, recentCold = 0;\nconst courseCounts = {};\nconst companies = {};\n\nfor (const row of recentRows) {\n  const cat = (row['Тип звонка(Category)'] || '').toLowerCase();\n  if (cat === 'hot') recentHot++;\n  else if (cat === 'warm') recentWarm++;\n  else if (cat === 'cold') recentCold++;\n\n  const course = detectCourse(row.Message);\n  courseCounts[course] = (courseCounts[course] || 0) + 1;\n\n  const company = row.Company || '';\n  if (company && company !== 'null' && company !== '') {\n    companies[company] = (companies[company] || 0) + 1;\n  }\n}\n\nconst topCourses = Object.entries(courseCounts)\n  .sort((a, b) => b[1] - a[1])\n  .slice(0, 3)\n  .map((c, i) => `${i + 1}. ${c[0]} — ${c[1]}`)\n  .join('\\n');\n\nconst topCompanies = Object.entries(companies)\n  .sort((a, b) => b[1] - a[1])\n  .slice(0, 3)\n  .map((c, i) => `${i + 1}. ${c[0]} — ${c[1]}`)\n  .join('\\n');\n\nconst report = `📊 Аналитика\n\n📅 За последние 2 дня:\n📥 Лидов: ${recentRows.length}\n🔥 Hot: ${recentHot} | 🟡 Warm: ${recentWarm} | 🔵 Cold: ${recentCold}\n\n📅 За всё время:\n📥 Лидов: ${rows.length}\n🔥 Hot: ${totalHot} | 🟡 Warm: ${totalWarm} | 🔵 Cold: ${totalCold}\n\n🏆 Топ курсы (2 дня):\n${topCourses || 'Нет данных'}\n\n🏢 Топ компании (2 дня):\n${topCompanies || 'Нет данных'}`;\n\nreturn [{\n  json: {\n    chat_id: telegramData.message.chat.id,\n    report: report\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        880
+      ],
+      "id": "1836062d-e209-4c75-ad03-06158c01b2e6",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.waiting_for_schedule) {\n  staticData.waiting_for_schedule = {};\n}\n\nconst preparedData = $('data prepare for approve').first().json;\nconst clientChatId = String(preparedData.client_chat_id);\nconst managerChatId = String(preparedData.manager_chat_id);\n\nstaticData.waiting_for_schedule[clientChatId] = {\n  waiting: true,\n  manager_chat_id: managerChatId,\n  timestamp: new Date().toISOString()\n};\n\nreturn [$input.all()[0]];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        496
+      ],
+      "id": "09e2dc88-06a0-4a70-8594-da4a60a50d27",
+      "name": "Save Waiting State"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "Когда вам удобно созвониться? Напишите дату и время, например \"Завтра в 15:00\" или \"В среду в 10 утра\".",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        496
+      ],
+      "id": "f1456e89-6467-485d-b00e-76c2c121e53a",
+      "name": "ask for a time",
+      "webhookId": "f45d9949-486a-4c26-83fc-3d8760bc29b9",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst chatId = String($json.message.chat.id);\n\n// Debug: посмотрим что в Static Data\nconst debugInfo = JSON.stringify(staticData.waiting_for_schedule || {});\nconst allKeys = Object.keys(staticData.waiting_for_schedule || {});\n\nconst isWaiting = staticData.waiting_for_schedule && \n                  staticData.waiting_for_schedule[chatId] &&\n                  staticData.waiting_for_schedule[chatId].waiting;\n\nlet managerChatId = '';\nif (isWaiting) {\n  managerChatId = staticData.waiting_for_schedule[chatId].manager_chat_id;\n}\n\nreturn [{\n  json: {\n    ...$json,\n    is_waiting: isWaiting ? true : false,\n    manager_chat_id: managerChatId,\n    debug_chat_id: chatId,\n    debug_keys: allKeys,\n    debug_static: debugInfo\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        16
+      ],
+      "id": "a84d5e3e-4e75-46fb-a333-b93c9e37c4a2",
+      "name": "check waiting?"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.1-flash-lite-preview",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.1-flash-lite-preview"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Extract date and time from this message. Today is {{ $now.format('yyyy-MM-dd') }} and today is {{ $now.format('EEEE') }}.\n\nMESSAGE: \"{{ $json.message.text }}\"\n\nRules:\n- \"Завтра в 15:00\" → tomorrow's date, 15:00\n- \"В среду в 10\" → next Wednesday, 10:00\n- \"Послезавтра утром\" → day after tomorrow, 09:00\n- If only date mentioned, default time is 10:00\n- If only time mentioned, default date is tomorrow\n- If cannot parse → set \"valid\": false\n\nRETURN ONLY JSON:\n{\"date\": \"YYYY-MM-DD\", \"time\": \"HH:MM\", \"valid\": true}\nor\n{\"date\": \"\", \"time\": \"\", \"valid\": false}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        -128
+      ],
+      "id": "3b01c066-c192-4414-ba6b-28f39080289a",
+      "name": "Parse a DateTime",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TKyAytCaLHF9tPHJ",
+          "name": "Sales Bot - Gemini"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const geminiResponse = $input.first().json.content.parts[0].text;\nconst parsed = JSON.parse(geminiResponse);\nconst telegramData = $('Telegram Trigger').first().json;\nconst chatId = String(telegramData.message.chat.id);\nconst staticData = $getWorkflowStaticData('global');\nconst waitingData = staticData.waiting_for_schedule[chatId];\n\nif (!parsed.valid) {\n  return [{\n    json: {\n      valid: false,\n      chat_id: chatId,\n      manager_chat_id: waitingData.manager_chat_id\n    }\n  }];\n}\n\n// Clear waiting state\ndelete staticData.waiting_for_schedule[chatId];\n\nconst startDateTime = parsed.date + 'T' + parsed.time + ':00';\nconst endHour = String(parseInt(parsed.time.split(':')[0]) + 1).padStart(2, '0');\nconst endDateTime = parsed.date + 'T' + endHour + ':' + parsed.time.split(':')[1] + ':00';\n\nreturn [{\n  json: {\n    valid: true,\n    date: parsed.date,\n    time: parsed.time,\n    start: startDateTime,\n    end: endDateTime,\n    chat_id: chatId,\n    manager_chat_id: 1619231316,\n    client_name: telegramData.message.from.first_name || 'Клиент'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1312,
+        -128
+      ],
+      "id": "974b4eff-b927-4c6e-ad3b-192c87cf1401",
+      "name": "Prepare Calendar Event"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "Не удалось распознать дату. Напишите конкретнее, например \"20 апреля в 15:00\".",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1856,
+        -96
+      ],
+      "id": "edd0e05d-c1d7-4e6a-8a98-987a922d7339",
+      "name": "Ask Again",
+      "webhookId": "11db4b68-6494-401f-9073-9829456bc6f1",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "0d2d2c0371d0a0ab40dade60d1f12fa11ae78242ba3c81e2e2709764786f347f@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "встречи"
+        },
+        "start": "={{ $json.start }}",
+        "end": "={{ $json.end }}",
+        "additionalFields": {
+          "description": "Автоматически создано Sales Lead Qualifier Bot",
+          "summary": "=Звонок с {{ $json.client_name }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        1856,
+        -256
+      ],
+      "id": "32061aa9-85f7-4341-82b1-bc4125769845",
+      "name": "Create Meeting",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Ae405ozqHW9x540p",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('check for validity').item.json.chat_id }}",
+        "text": "=✅ Встреча назначена на {{ $('check for validity').item.json.date }} в {{ $('check for validity').item.json.time }}. Ждём вас!",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2064,
+        -256
+      ],
+      "id": "9cffb594-2470-44b1-9de0-551fe9869735",
+      "name": "Confirm to Client",
+      "webhookId": "de6cd567-8a38-488b-952e-51e9ab92ad74",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.result.chat.id }}",
+        "text": "=📅 Новая встреча! 👤 {{ $json.result.chat.first_name }} 🕐 {{ $('check for validity').item.json.date }} в  {{ $('check for validity').item.json.time }}📍 Добавлено в Google Calendar",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2256,
+        -256
+      ],
+      "id": "c07d8c6f-1e18-4265-b1d3-bfd99aee3143",
+      "name": "time confirmation to manager",
+      "webhookId": "22553a7e-0037-4956-bfc3-341495046645",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d3a03a1b-52b0-4b09-ace2-02a9d5e666de",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1520,
+        -128
+      ],
+      "id": "bd57af41-d5c5-4928-946d-7304ecae98fd",
+      "name": "check for validity"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "520351ed-09e1-4071-b333-e1b35b39d18b",
+              "leftValue": "={{ $json.is_waiting }} ",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        656,
+        16
+      ],
+      "id": "8262dd7f-72d6-4eec-b158-c52884349bf2",
+      "name": "client waiting?"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chat_id }}",
+        "text": "={{ $json.report }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        880
+      ],
+      "id": "e4f22270-7973-4dbf-a40a-5e8d5c643aaf",
+      "name": "send a report",
+      "webhookId": "d1f62539-3bc8-4d6e-8f21-c1994ba40ca2",
+      "credentials": {
+        "telegramApi": {
+          "id": "qSwVG8HH6SVKLUM9",
+          "name": "Sales Bot - Telegram"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const callbackData = $input.first().json.callback_query.data;\nconst parts = callbackData.split('_');\nconst action = parts[0];\nconst clientChatId = parts.slice(1).join('_');\nconst managerChatId = $input.first().json.callback_query.message.chat.id;\nconst messageText = $input.first().json.callback_query.message.text;\n\nlet generatedResponse = \"\";\nif (messageText.includes(\"---GENERATEDRESPONSE---\")) {\n  generatedResponse = messageText\n    .split(\"---GENERATEDRESPONSE---\")[1]\n    .split(\"---ENDRESPONSE---\")[0]\n    .trim();\n}\n\nreturn [{\n  json: {\n    action: action,\n    client_chat_id: clientChatId,\n    manager_chat_id: managerChatId,\n    generated_response: generatedResponse\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        512
+      ],
+      "id": "75ef0a24-2a5b-4e01-a0cf-5211026289b5",
+      "name": "data prepare for approve"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nif (!staticData.waiting_for_schedule) {\n  staticData.waiting_for_schedule = {};\n}\n\nconst codeData = $('data enricher').first().json;\nconst clientChatId = String(codeData.chat_id);\nconst managerChatId = clientChatId;\n\nstaticData.waiting_for_schedule[clientChatId] = {\n  waiting: true,\n  manager_chat_id: managerChatId,\n  timestamp: new Date().toISOString()\n};\n\nreturn [$input.all()[0]];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3616,
+        240
+      ],
+      "id": "7905ec97-ddf4-45dc-9e44-d02ae06e2324",
+      "name": "set waiting"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0e5b163b-d295-44bd-bb18-e1c826bb85a1",
+              "leftValue": "={{ $json.should_notify }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3184,
+        400
+      ],
+      "id": "23344536-5570-41fb-9f49-98bf3ee383a8",
+      "name": "should notify?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ad08eb74-0bc8-431f-9393-d64f67ff7e2d",
+              "leftValue": "={{ $json.should_notify }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3184,
+        112
+      ],
+      "id": "6b668c3f-749c-49e1-8f19-1914a6ab0865",
+      "name": "should notify?1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e000d542-e62e-48d2-821a-2b729d23f787",
+              "leftValue": "={{ $json.intent }}",
+              "rightValue": "lead",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1520,
+        192
+      ],
+      "id": "e9940fe3-6f46-45f1-a3cc-bea662c10577",
+      "name": "intend identifier"
+    },
+    {
+      "parameters": {
+        "jsCode": "const gemini1 = $('field extracter').first().json;\nconst gemini2 = $('respond for user').first().json;\nconst telegramData = $('Telegram Trigger').first().json;\n\nconst parsed = JSON.parse($('field extracter').first().json.candidates[0].content.parts[0].text);\nconst generatedResponse = $input.first().json.content.parts[0].text;\n\n// Known companies database - no need to scrape these\nconst knownCompanies = {\n  \"Kaspi Bank\": {\n    industry: \"Fintech / Digital Banking\",\n    size: \"15,000+ сотрудников\",\n    description: \"Крупнейшая финтех-экосистема Казахстана: банкинг, маркетплейс, платежи, путешествия\",\n    website: \"kaspi.kz\"\n  },\n  \"Halyk Bank\": {\n    industry: \"Banking\",\n    size: \"12,000+ сотрудников\",\n    description: \"Крупнейший банк Казахстана по активам, универсальный банкинг для физических и юридических лиц\",\n    website: \"halykbank.kz\"\n  },\n  \"Kolesa Group\": {\n    industry: \"Tech / Classifieds\",\n    size: \"1,500+ сотрудников\",\n    description: \"Крупнейшая IT-компания Казахстана: Kolesa.kz, Krisha.kz, Market.kz\",\n    website: \"kolesa.group\"\n  },\n  \"Air Astana\": {\n    industry: \"Aviation\",\n    size: \"5,000+ сотрудников\",\n    description: \"Национальная авиакомпания Казахстана, флагманский перевозчик\",\n    website: \"airastana.com\"\n  },\n  \"Freedom Finance\": {\n    industry: \"Fintech / Investments\",\n    size: \"3,000+ сотрудников\",\n    description: \"Инвестиционная компания, брокерские услуги, банкинг, страхование\",\n    website: \"ffin.kz\"\n  },\n  \"Forte Bank\": {\n    industry: \"Banking\",\n    size: \"4,000+ сотрудников\",\n    description: \"Универсальный банк Казахстана, розничный и корпоративный банкинг\",\n    website: \"forte.kz\"\n  },\n  \"Technodom\": {\n    industry: \"Retail / Electronics\",\n    size: \"3,000+ сотрудников\",\n    description: \"Крупнейшая сеть электроники и бытовой техники в Казахстане\",\n    website: \"technodom.kz\"\n  },\n  \"Kazakhtelecom\": {\n    industry: \"Telecom\",\n    size: \"20,000+ сотрудников\",\n    description: \"Национальный телеком-оператор Казахстана\",\n    website: \"telecom.kz\"\n  }\n};\n\n// Check if company is in our known database\nlet enrichment = null;\nlet enrichmentSource = \"none\";\n\nif (parsed.company && knownCompanies[parsed.company]) {\n  const info = knownCompanies[parsed.company];\n  enrichment = `${parsed.company} — ${info.industry}, ${info.size}. ${info.description}`;\n  enrichmentSource = \"known_database\";\n} else if (parsed.company) {\n  enrichment = `Компания \"${parsed.company}\" не найдена в базе известных компаний. Требуется ручной анализ.`;\n  enrichmentSource = \"unknown_needs_research\";\n} else {\n  enrichment = \"Компания не указана\";\n  enrichmentSource = \"not_provided\";\n}\n\nreturn [{\n  json: {\n    ...parsed,\n    generated_response: generatedResponse,\n    enrichment: enrichment,\n    enrichment_source: enrichmentSource,\n    original_text: telegramData.message.text,\n    chat_id: telegramData.message.chat.id,\n    sender_name: telegramData.message.from.first_name,\n    sender_username: telegramData.message.from.username\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2496,
+        96
+      ],
+      "id": "6a796eaa-48a8-4d92-9b35-fe02a69a87fb",
+      "name": "data enricher"
+    }
+  ],
+  "pinData": {
+    "Parse Intent": [
+      {
+        "json": {
+          "intent": "lead",
+          "message_text": "Здравствуйте, я из Kolesa Group, хотим записать 10 сотрудников на курс UI/UX дизайн. Бюджет есть.",
+          "chat_id": 1619231316,
+          "first_name": "Aibar",
+          "username": "Shaiybar"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "check for category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message to Managers": {
+      "main": [
+        []
+      ]
+    },
+    "respond for user": {
+      "main": [
+        [
+          {
+            "node": "data enricher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "field extracter": {
+      "main": [
+        [
+          {
+            "node": "respond for user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Auto Respond": {
+      "main": [
+        [
+          {
+            "node": "Auto Respond?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Command Handler": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Respond?": {
+      "main": [
+        [
+          {
+            "node": "Auto Send to Client",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "should notify?1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "should notify?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check for category": {
+      "main": [
+        [
+          {
+            "node": "Check Auto Respond",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Auto Send to Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto Send to Client": {
+      "main": [
+        [
+          {
+            "node": "set waiting",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send to Client",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Confirm Reject",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Router": {
+      "main": [
+        [
+          {
+            "node": "Command Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "check waiting?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "data prepare for approve",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intent Classifier": {
+      "main": [
+        [
+          {
+            "node": "Parse Intent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Intent": {
+      "main": [
+        [
+          {
+            "node": "intend identifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "answer to question",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "send a report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to Client": {
+      "main": [
+        [
+          {
+            "node": "Save Waiting State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Waiting State": {
+      "main": [
+        [
+          {
+            "node": "ask for a time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ask for a time": {
+      "main": [
+        [
+          {
+            "node": "Confirm Approve",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check waiting?": {
+      "main": [
+        [
+          {
+            "node": "client waiting?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse a DateTime": {
+      "main": [
+        [
+          {
+            "node": "Prepare Calendar Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Calendar Event": {
+      "main": [
+        [
+          {
+            "node": "check for validity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Meeting": {
+      "main": [
+        [
+          {
+            "node": "Confirm to Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confirm to Client": {
+      "main": [
+        [
+          {
+            "node": "time confirmation to manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check for validity": {
+      "main": [
+        [
+          {
+            "node": "Create Meeting",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Ask Again",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "client waiting?": {
+      "main": [
+        [
+          {
+            "node": "Parse a DateTime",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Intent Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "send a report": {
+      "main": [
+        []
+      ]
+    },
+    "data prepare for approve": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "should notify?": {
+      "main": [
+        [
+          {
+            "node": "Notify Manager Manual",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "should notify?1": {
+      "main": [
+        [
+          {
+            "node": "Message to Managers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "intend identifier": {
+      "main": [
+        [
+          {
+            "node": "field extracter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "data enricher": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8708d27e-6798-4440-85ef-db464cbbf493",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b285c319dc8abecf8b46c0499b36216e543ff729923dc4abc6104c3d431ccc42"
+  },
+  "id": "9z1SMkzk4TtBvhOl",
+  "tags": []
+}
