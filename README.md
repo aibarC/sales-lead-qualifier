@@ -176,6 +176,54 @@ The RAG system is built on Big Dream Lab's actual course offerings:
 | AR/VR Development | 5 months | 800,000 ₸ |
 
 The system also handles Tech Orda grant information — a government program covering up to 600,000 ₸ of tuition.
+## Screenshots
+
+### Workflow Architecture
+The entire n8n workflow — one bot handles lead qualification, RAG Q&A, calendar scheduling, analytics, and manager commands.
+
+![workflow](screenshots/01_workflow.png)
+
+### Bot Commands
+Managers control the bot through Telegram's built-in command menu — auto-respond, filters, analytics, all accessible with one tap.
+
+![commands](screenshots/02_bot_commands.jpg)
+
+### Auto-Respond Mode (ON)
+When auto-respond is enabled, the bot immediately sends an AI-generated response to the client and notifies the manager with a summary.
+
+![auto mode](screenshots/03_auto_respond_flow.png)
+
+Manager receives a detailed notification confirming the auto-response was sent, including client info, company enrichment, lead category, and the generated response.
+
+![manager auto](screenshots/04_manager_notify_auto.png)
+
+### Manual Mode with Approve/Reject Buttons (OFF)
+When auto-respond is disabled, the manager receives the lead with inline buttons. The AI-generated response is included for review before sending.
+
+![manual mode](screenshots/05_manual_mode_buttons.png)
+
+### Google Calendar Integration
+After approving a lead, the bot asks the client for a preferred meeting time, parses the response using Gemini, and automatically creates a Google Calendar event.
+
+![calendar flow](screenshots/06_calendar_scheduling.png)
+
+![calendar event](screenshots/07_google_calendar_event.png)
+
+### RAG Knowledge Base
+The bot answers questions about courses, pricing, and grants by searching through indexed company documents. Responses include relevant information from multiple sources.
+
+![rag answers](screenshots/08_rag_answers.png)
+
+### Lead Rejection
+Managers can reject leads with one tap. The client receives no response, and the manager gets confirmation.
+
+![reject](screenshots/09_reject_flow.png)
+
+### RAG Service Health
+The Python RAG microservice runs alongside n8n in Docker Compose, with a health endpoint for monitoring.
+
+![health](screenshots/10_rag_health.png)
+
 
 ## Planned Features
 
