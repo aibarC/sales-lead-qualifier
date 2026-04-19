@@ -37,9 +37,9 @@ One Telegram bot handles everything:
 │                                                         │
 │  ┌─────────────┐  ┌──────────┐  ┌──────────────────┐    │
 │  │ Flask API   │→ │ ChromaDB │→ │ Groq (Llama 3.3) │    │
-│  │ /ask        │  │ Vector   │  │ Answer Generator  │   │
+│  │ /ask        │  │ Vector   │  │ Answer Generator │    │
 │  └─────────────┘  │ Search   │  └──────────────────┘    │
-│                    └──────────┘                         │
+│                   └──────────┘                          │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -184,11 +184,18 @@ The system also handles Tech Orda grant information — a government program cov
 - **Auto-respond Schedule** — `/schedule 09:00-18:00` for time-based auto-respond
 - **Kazakh Language RAG** — multilingual embeddings (e.g. multilingual-e5-large) for full Kazakh support
 - **PDF Upload Indexing** — manager sends PDF to bot → automatically indexed into RAG
-- **Weekly Report Export** — `/report` generates downloadable lead report
 
-## About
 
-Built as a portfolio project for the **AI/Automation Intern** position at Big Dream Lab (Nazarbayev University Job Fair 2026).
+## Disclaimer
+
+This is a **demo prototype** built as a portfolio project. In a production environment, the following improvements would be necessary:
+
+- **Security**: proper secret management (e.g. HashiCorp Vault), HTTPS without ngrok, rate limiting
+- **Scalability**: n8n cloud or self-hosted with PostgreSQL backend, horizontal scaling for RAG service
+- **Reliability**: error handling, retry logic, logging and monitoring (e.g. Grafana)
+- **Data**: production database instead of Google Sheets, proper CRM integration (HubSpot, Salesforce)
+- **Multi-language RAG**: multilingual embeddings (e.g. multilingual-e5-large) for full Kazakh language support
+- **Testing**: unit tests, integration tests, load testing
 
 **Author:** Aibar Serik
 **GitHub:** [github.com/aibarC](https://github.com/aibarC)
